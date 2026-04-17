@@ -6,7 +6,7 @@ import { Trash2, ArrowRight, ShieldCheck } from 'lucide-react';
 export function Cart() {
   const cartItems = mockProducts.slice(0, 2);
   const subtotal = cartItems.reduce((sum, item) => sum + item.price, 0);
-  const shipping = 15.00;
+  const shipping = 2500;
   const total = subtotal + shipping;
 
   return (
@@ -43,7 +43,7 @@ export function Cart() {
                     
                     <div className="col-span-2 text-center w-full md:w-auto flex justify-between md:block">
                       <span className="md:hidden text-gray-500">Цена:</span>
-                      <span className="font-medium text-gray-900">${item.price.toFixed(2)}</span>
+                      <span className="font-medium text-gray-900">{item.price.toLocaleString('ru-KZ')} ₸</span>
                     </div>
                     
                     <div className="col-span-2 flex justify-center w-full md:w-auto">
@@ -56,7 +56,7 @@ export function Cart() {
                     
                     <div className="col-span-2 flex items-center justify-between md:justify-end w-full md:w-auto">
                       <span className="md:hidden text-gray-500">Итого:</span>
-                      <span className="font-bold text-gray-900 mr-4">${item.price.toFixed(2)}</span>
+                      <span className="font-bold text-gray-900 mr-4">{item.price.toLocaleString('ru-KZ')} ₸</span>
                       <button className="text-gray-400 hover:text-red-500 transition-colors">
                         <Trash2 className="h-5 w-5" />
                       </button>
@@ -81,11 +81,11 @@ export function Cart() {
               <div className="space-y-4 text-sm mb-6">
                 <div className="flex justify-between text-gray-600">
                   <span>Сумма ({cartItems.length} товаров)</span>
-                  <span className="font-medium text-gray-900">${subtotal.toFixed(2)}</span>
+                  <span className="font-medium text-gray-900">{subtotal.toLocaleString('ru-KZ')} ₸</span>
                 </div>
                 <div className="flex justify-between text-gray-600">
                   <span>Доставка</span>
-                  <span className="font-medium text-gray-900">${shipping.toFixed(2)}</span>
+                  <span className="font-medium text-gray-900">{shipping.toLocaleString('ru-KZ')} ₸</span>
                 </div>
                 <div className="flex justify-between text-gray-600">
                   <span>Налоги</span>
@@ -94,13 +94,15 @@ export function Cart() {
                 <div className="h-px bg-gray-100 my-4"></div>
                 <div className="flex justify-between text-base font-bold text-gray-900">
                   <span>Итого</span>
-                  <span>${total.toFixed(2)}</span>
+                  <span>{total.toLocaleString('ru-KZ')} ₸</span>
                 </div>
               </div>
               
-              <Button className="w-full h-12 text-lg mb-4">
-                Оформить заказ <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
+              <Link to="/checkout" className="block">
+                <Button className="w-full h-12 text-lg mb-4">
+                  Оформить заказ <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+              </Link>
               
               <div className="flex items-center justify-center gap-2 text-sm text-gray-500 mt-6">
                 <ShieldCheck className="h-5 w-5 text-green-500" />

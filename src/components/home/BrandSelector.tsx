@@ -4,7 +4,7 @@ import { mockBrands } from '../../data/mockData';
 export function BrandSelector() {
   return (
     <section className="py-12 bg-gray-50 border-b border-gray-200">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 max-w-6xl">
         <div className="flex justify-between items-end mb-6">
           <div>
             <h2 className="text-2xl font-bold text-gray-900 tracking-tight">Поиск по марке</h2>
@@ -15,17 +15,22 @@ export function BrandSelector() {
           </Link>
         </div>
         
-        <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4">
+        <div className="grid grid-cols-2 lg:grid-cols-4 xl:grid-cols-8 gap-6">
           {mockBrands.map((brand) => (
             <Link 
               key={brand.id} 
               to={`/catalog?brand=${brand.id}`}
-              className="flex flex-col items-center justify-center p-4 bg-white rounded-xl border border-gray-200 hover:border-blue-500 hover:shadow-md transition-all group"
+              className="flex flex-col items-center justify-center py-6 px-4 bg-white rounded-2xl border border-gray-100 shadow-sm hover:border-blue-400 hover:shadow-md transition-all group"
             >
-              <div className="w-12 h-12 rounded-full bg-gray-100 flex items-center justify-center text-xl font-bold text-gray-700 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors mb-3">
-                {brand.logo}
+              <div className="w-16 h-16 mb-4 flex items-center justify-center grayscale group-hover:grayscale-0 transition-all opacity-80 group-hover:opacity-100">
+                <img 
+                  src={brand.image} 
+                  alt={brand.name} 
+                  className="max-w-full max-h-full object-contain"
+                  referrerPolicy="no-referrer"
+                />
               </div>
-              <span className="text-sm font-medium text-gray-700 group-hover:text-gray-900 text-center">
+              <span className="text-sm font-semibold text-gray-700 group-hover:text-blue-600 text-center transition-colors">
                 {brand.name}
               </span>
             </Link>

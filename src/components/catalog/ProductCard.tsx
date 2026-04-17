@@ -1,16 +1,26 @@
 import { Link } from 'react-router-dom';
-import { ShoppingCart, Check, Clock } from 'lucide-react';
+import { ShoppingCart, Check, Clock, Heart } from 'lucide-react';
 import { Product } from '../../data/mockData';
 import { Button } from '../ui/Button';
 import { Badge } from '../ui/Badge';
+import { useState } from 'react';
 
 interface ProductCardProps {
   product: Product;
 }
 
 export function ProductCard({ product }: ProductCardProps) {
+  const [isSaved, setIsSaved] = useState(false);
+
   return (
-    <div className="group flex flex-col bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all">
+    <div className="group flex flex-col bg-white rounded-xl border border-gray-200 overflow-hidden hover:shadow-lg transition-all relative">
+      <button 
+        onClick={(e) => { e.preventDefault(); setIsSaved(!isSaved); }}
+        className="absolute top-3 right-3 z-10 p-2 bg-white/80 backdrop-blur-sm rounded-full text-gray-500 hover:text-red-500 transition-colors"
+      >
+        <Heart className={`w-5 h-5 ${isSaved ? 'fill-red-500 text-red-500' : ''}`} />
+      </button>
+
       <Link to={`/product/${product.id}`} className="relative aspect-square p-4 flex items-center justify-center bg-white">
         <img 
           src={product.image} 
@@ -41,11 +51,11 @@ export function ProductCard({ product }: ProductCardProps) {
           <div>
             {product.originalPrice && (
               <div className="text-sm text-gray-400 line-through mb-0.5">
-                ${product.originalPrice.toFixed(2)}
+                {product.originalPrice.toLocaleString('ru-KZ')} ₸
               </div>
             )}
             <div className="text-lg font-bold text-gray-900">
-              ${product.price.toFixed(2)}
+              {product.price.toLocaleString('ru-KZ')} ₸
             </div>
           </div>
           
