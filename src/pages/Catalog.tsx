@@ -33,27 +33,35 @@ export function Catalog() {
     <div className="bg-gray-50 min-h-screen py-8">
       <div className="container mx-auto px-4">
         {/* Breadcrumbs */}
-        <div className="text-sm text-gray-500 mb-6 flex items-center gap-2">
-          <span className="hover:text-blue-600 cursor-pointer transition-colors">Главная</span>
-          <span>/</span>
-          <span className="text-gray-900 font-medium">{categoryParam || 'Каталог'}</span>
+        <div className="text-sm text-gray-500 mb-6">
+          <span className="hover:text-blue-600 cursor-pointer">Главная</span>
+          <span className="mx-2">/</span>
+          <span className="text-gray-900 font-medium">Каталог</span>
         </div>
         
-        {/* Category Description Block */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 sm:p-8 mb-8 shadow-sm">
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight mb-4">
-            {categoryParam || 'Тормозные системы'}
-          </h1>
-          <div className="prose prose-sm sm:prose-base text-gray-600 max-w-none">
-             <p className="mb-4">
-              В этом разделе представлены компоненты для обеспечения безопасного и эффективного торможения вашего автомобиля. Мы предлагаем только проверенные детали от ведущих мировых производителей, таких как Brembo, ATE, TRW и NiBK.
-             </p>
-             <h3 className="text-lg font-bold text-gray-900 mb-2">Как правильно выбрать?</h3>
-             <ul className="list-disc pl-5 space-y-1 mb-0">
-               <li>Учитывайте стиль вождения: для агрессивной езды лучше подойдут керамические колодки.</li>
-               <li>Всегда проверяйте совместимость по VIN-коду вашего автомобиля.</li>
-               <li>Рекомендуем менять тормозные диски и колодки парами на одной оси для равномерного износа.</li>
-             </ul>
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Каталог автозапчастей</h1>
+            <p className="text-gray-500 mt-1">Показано {mockProducts.length} результатов</p>
+          </div>
+          
+          <div className="flex items-center gap-3 w-full md:w-auto">
+            <Button variant="outline" className="md:hidden flex-1">
+              <SlidersHorizontal className="h-4 w-4 mr-2" />
+              Фильтры
+            </Button>
+            
+            <div className="relative flex-1 md:w-48">
+              <select className="w-full appearance-none bg-white border border-gray-300 text-gray-700 py-2 pl-4 pr-10 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm font-medium">
+                <option>Сначала популярные</option>
+                <option>Сначала дешевые</option>
+                <option>Сначала дорогие</option>
+                <option>Новинки</option>
+              </select>
+              <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
+                <ChevronDown className="h-4 w-4" />
+              </div>
+            </div>
           </div>
         </div>
         
